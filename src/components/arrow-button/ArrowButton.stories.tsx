@@ -11,16 +11,13 @@ type Story = StoryObj<typeof ArrowButton>;
 
 const onClick = () => {
 	alert('state changed');
-}
+};
 
 export const ArrowButtonStory: Story = {
 	render: () => {
 		return (
 			<>
-				<ArrowButton
-					onClick={onClick}
-					state={false}
-				/>
+				<ArrowButton onClick={onClick} state={false} />
 			</>
 		);
 	},

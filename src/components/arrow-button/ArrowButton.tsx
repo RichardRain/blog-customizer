@@ -8,9 +8,9 @@ export type OnClick = () => void;
 export type ArrowProps = {
 	onClick: OnClick;
 	state: boolean;
-}
+};
 
-export const ArrowButton = ({onClick, state}: ArrowProps) => {
+export const ArrowButton = ({ onClick, state }: ArrowProps) => {
 	let buttonStyle = styles.container;
 	let arrowStyle = styles.arrow;
 

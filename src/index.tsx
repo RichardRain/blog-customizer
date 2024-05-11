@@ -15,10 +15,9 @@ const root = createRoot(domNode);
 const App = () => {
 	const [isParamsOpen, setState] = useState(false);
 
-
 	const toggleParamsForm = () => {
 		isParamsOpen ? setState(false) : setState(true);
-	}
+	};
 
 	return (
 		<div
@@ -32,10 +31,7 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm
-				onClick={toggleParamsForm}
-				state={isParamsOpen}
-			/>
+			<ArticleParamsForm onClick={toggleParamsForm} state={isParamsOpen} />
 			<Article />
 		</div>
 	);
