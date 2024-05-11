@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { StrictMode, CSSProperties } from 'react';
+import { StrictMode, CSSProperties, useState } from 'react';
 import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
@@ -13,6 +13,13 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
+	const [isParamsOpen, setState] = useState(false);
+
+
+	const toggleParamsForm = () => {
+		isParamsOpen ? setState(false) : setState(true);
+	}
+
 	return (
 		<div
 			className={clsx(styles.main)}
@@ -25,7 +32,10 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm
+				onClick={toggleParamsForm}
+				state={isParamsOpen}
+			/>
 			<Article />
 		</div>
 	);
