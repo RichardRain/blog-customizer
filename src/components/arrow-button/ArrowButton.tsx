@@ -1,5 +1,5 @@
 import arrow from 'src/images/arrow.svg';
-
+import clsx from 'clsx';
 import styles from './ArrowButton.module.scss';
 
 /** Функция для обработки открытия/закрытия формы */
@@ -11,16 +11,16 @@ export type ArrowProps = {
 };
 
 export const ArrowButton = ({ onClick, state }: ArrowProps) => {
-	let buttonStyle = styles.container;
-	let arrowStyle = styles.arrow;
+	const buttonStyle = clsx({
+		[styles.container]: true,
+		[styles.container_open]: state,
+	});
 
-	if (state) {
-		buttonStyle = `${styles.container} ${styles.container_open}`;
-		arrowStyle = `${styles.arrow} ${styles.arrow_open}`;
-	} else {
-		buttonStyle = styles.container;
-		arrowStyle = styles.arrow;
-	}
+	const arrowStyle = clsx({
+		[styles.arrow]: true,
+		[styles.arrow_open]: state,
+	});
+
 	return (
 		/* Не забываем указаывать role и aria-label атрибуты для интерактивных элементов */
 		<div

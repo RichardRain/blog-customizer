@@ -1,24 +1,23 @@
-import { ArrowButton } from 'components/arrow-button';
+import clsx from 'clsx';
 import { Button } from 'components/button';
+import { ReactNode } from 'react';
 
 import styles from './ArticleParamsForm.module.scss';
 
 export type ParamsProps = {
-	onClick: () => void;
 	state: boolean;
+	arrowButton: ReactNode;
 };
 
-export const ArticleParamsForm = ({ onClick, state }: ParamsProps) => {
-	let formStyle = styles.container;
-	if (state) {
-		formStyle = `${styles.container} ${styles.container_open}`;
-	} else {
-		formStyle = styles.container;
-	}
+export const ArticleParamsForm = ({ state, arrowButton }: ParamsProps) => {
+	const formStyle = clsx({
+		[styles.container]: true,
+		[styles.container_open]: state,
+	});
 
 	return (
 		<>
-			<ArrowButton onClick={onClick} state={state} />
+			{arrowButton}
 			<aside className={formStyle}>
 				<form className={styles.form}>
 					<div className={styles.bottomContainer}>
