@@ -8,17 +8,11 @@ import { defaultArticleState } from './constants/articleProps';
 
 import './styles/index.scss';
 import styles from './styles/index.module.scss';
-import { ArrowButton } from './components/arrow-button';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const [isParamsOpen, setState] = useState(false);
-
-	const toggleParamsForm = () => {
-		isParamsOpen ? setState(false) : setState(true);
-	};
 
 	return (
 		<div
@@ -32,13 +26,8 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm
-				state={isParamsOpen}
-				arrowButton={
-					<ArrowButton onClick={toggleParamsForm} state={isParamsOpen} />
-				}
-			/>
-			<Article />
+			<ArticleParamsForm/>
+			<Article/>
 		</div>
 	);
 };
