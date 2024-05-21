@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import { Button } from '../button';
-import { SyntheticEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Text } from '../text';
-import { useToogleSidebar } from './hooks/useToggleSidebar';
 import { useOutsideClickClose } from './hooks/useOutsideClickClose';
 import { Select } from '../select';
 import { RadioGroup } from '../radio-group';
@@ -26,7 +25,10 @@ type ParamsProps = {
 
 export const ArticleParamsForm = ({ setSettings }: ParamsProps) => {
 	// Хук отвечающий за состояние отображения сайдбара
-	const { isOpen, toggleSidebar, closeSidebar } = useToogleSidebar();
+	const [isOpen, setIsOpen] = useState(false);
+	const toggleSidebar = () => {
+		isOpen ? setIsOpen(false) : setIsOpen(true);
+	};
 	// Хуки состояний настроек
 	const [newFont, setFont] = useState(defaultArticleState.fontFamilyOption);
 	const [newSize, setSize] = useState(defaultArticleState.fontSizeOption);
@@ -36,13 +38,15 @@ export const ArticleParamsForm = ({ setSettings }: ParamsProps) => {
 	);
 	const [newWidth, setWidth] = useState(defaultArticleState.contentWidth);
 
-	const rootRef = useRef<HTMLDivElement>(null);
+	const rootRef = useRef<HTMLDivElement | null>(null);
 
 	// Хук отвеачющий за закрытие при клике вне сайдбара
 	useOutsideClickClose({
 		isOpen,
 		rootRef,
-		onChange: closeSidebar,
+		onChange: () => {
+			setIsOpen(false);
+		},
 	});
 
 	const formStyle = clsx({
@@ -67,7 +71,7 @@ export const ArticleParamsForm = ({ setSettings }: ParamsProps) => {
 	};
 
 	// Применение текущих настроек
-	const submitSettings = (evt: SyntheticEvent) => {
+	const submitSettings = (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		setSettings({
 			fontFamilyOption: newFont,
