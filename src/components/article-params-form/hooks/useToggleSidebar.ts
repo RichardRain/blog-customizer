@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export const useToogleSidebar = () => {
-	const [isOpen, setState] = useState(true); // true - для удобства разработки
+	const [isOpen, setState] = useState(false);
 
 	const toggleSidebar = () => {
 		isOpen ? closeSidebar() : openSidebar();
