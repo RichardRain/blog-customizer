@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export const useToogleSidebar = () => {
 	const [isOpen, setState] = useState(true); // true - для удобства разработки
@@ -9,11 +9,11 @@ export const useToogleSidebar = () => {
 
 	const openSidebar = () => {
 		setState(true);
-	}
+	};
 
 	const closeSidebar = () => {
 		setState(false);
-	}
+	};
 
-	return {isOpen, toggleSidebar, openSidebar, closeSidebar};
-}
+	return { isOpen, toggleSidebar, openSidebar, closeSidebar };
+};
