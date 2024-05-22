@@ -27,7 +27,7 @@ export const ArticleParamsForm = ({ setSettings }: ParamsProps) => {
 	// Хук отвечающий за состояние отображения сайдбара
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleSidebar = () => {
-		isOpen ? setIsOpen(false) : setIsOpen(true);
+		setIsOpen(!isOpen);
 	};
 	// Хуки состояний настроек
 	const [newFont, setFont] = useState(defaultArticleState.fontFamilyOption);
